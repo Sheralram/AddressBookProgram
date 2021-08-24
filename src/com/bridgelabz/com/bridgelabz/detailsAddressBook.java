@@ -1,7 +1,5 @@
 package com.bridgelabz.com.bridgelabz;
 
-import java.util.Scanner;
-
 public class detailsAddressBook {
 //    public AddressBookProgram(int contactID, String firstName, String lastName, String address, String city, String state, String zip, String phoneNumber, String emailAddress)
 //    {
@@ -86,13 +84,24 @@ public class detailsAddressBook {
     }
 
     public void setEmailAddress(String emailAddress) {
+
+
         this.emailAddress = emailAddress;
     }
 
 
-
-
-
-
+    @Override
+    public String toString() {
+       return "detailsAddressBook{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", address='" + address + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", zip=" + zip +
+                ", phoneNumber=" + phoneNumber +
+                ", emailAddress='" + emailAddress + '\'' +
+                '}' + '\n';
+    }
 
 }
