@@ -1,12 +1,13 @@
 package com.bridgelabz.com.bridgelabz;
 
 import com.bridgelabz.OptionMenu;
+
 import java.util.*;
 
 public class BooksHashMap {
     Map<String, List<detailsAddressBook>> addressBooks = new HashMap<>();
     OptionMenu optionMenu = new OptionMenu();
-    private  Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
 
     public void multipleAddressBook() {
         while (true) {
@@ -14,6 +15,8 @@ public class BooksHashMap {
                     "1. Crate new address book \n" +
                     "2. Continue with existing address book \n" +
                     "3. All books \n" +
+                    "4.Search City \n" +
+                    "5.Search State \n" +
                     "0. EXIT");
             int choice = scanner.nextInt();
             switch (choice) {
@@ -48,10 +51,40 @@ public class BooksHashMap {
                     System.out.println("\n" + addressBooks);
                     break;
 
+                case 4:
+                    System.out.println("Enter Name for City");
+                    String nameForCity = scanner.next();
+                    searchAcrossCity(nameForCity);
+                    break;
+
+                case 5:
+                    System.out.println("Enter name for State ");
+                    String nameForState = scanner.next();
+                    searchAcrossState(nameForState);
+                    break;
+
                 default:
                     System.exit(0);
                     break;
             }
+        }
+    }
+
+    private void searchAcrossCity(String contactsInCity) {
+        for (String keyOfBook : addressBooks.keySet()) {
+            addressBooks.get(keyOfBook)
+                    .stream()
+                    .filter(contactInfo -> contactsInCity.equals(contactInfo.getCity()))
+                    .forEach(System.out::println);
+        }
+    }
+
+    private void searchAcrossState(String contactsInState) {
+        for (String keyOfBook : addressBooks.keySet()) {
+            addressBooks.get(keyOfBook)
+                    .stream()
+                    .filter(contactInfo -> contactsInState.equals(contactInfo.getState()))
+                    .forEach(System.out::println);
         }
     }
 }
