@@ -1,21 +1,21 @@
 package com.bridgelabz;
 
 import com.bridgelabz.com.bridgelabz.detailsAddressBook;
-
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+import java.util.logging.StreamHandler;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-class AddOrRemove {
-
+public class AddOrRemove {
     ArrayList<detailsAddressBook> detailsAddressBookArrayList = new ArrayList<>();
     Scanner scanner = new Scanner(System.in);
 
-
     public ArrayList addPerson() {
-
         System.out.println("Enter following details \n" +
                 "First Name :");
-        String firstName = scanner.next();
+       String firstName = scanner.next();
         System.out.println("Last Name :");
         String lastName = scanner.next();
         System.out.println("Address :");
@@ -40,10 +40,8 @@ class AddOrRemove {
         details.setZip(zip);
         details.setPhoneNumber(phoneNumber);
         details.setEmailAddress(emailAddress);
-
         detailsAddressBookArrayList.add(details);   //Adding details data
         return detailsAddressBookArrayList;
-
     }
 
     public void displayPerson() {
@@ -53,6 +51,7 @@ class AddOrRemove {
             System.out.println("All contact =  " + detailsAddressBookArrayList.size());
             System.out.println(detailsAddressBookArrayList);
         }
+
     }
 
     public void editPerson() {
@@ -127,31 +126,31 @@ class AddOrRemove {
         } else {
             System.out.println("First Name is not found");
         }
-
-
     }
 
 
     public void removePerson() {
-
-        System.out.println("Enter a first name you want to delete...");
-        String removeName = scanner.next();
-
-        boolean found = false;
-        for (int i = 0; i < detailsAddressBookArrayList.size(); i++) {
-            if (detailsAddressBookArrayList.get(i).getFirstName().equals(removeName))
-            {
-                found = true;
-                detailsAddressBookArrayList.remove(i);
-            }
-
+        if (detailsAddressBookArrayList.size() == 0) {
+            System.out.println("Address book is Empty . Please add details to remove the expected contacts");
         }
-        if (found) {
-            System.out.println("ADDRESS CONTACT BOOK IS DELETED SUCCESSFULLY");
-        } else {
-            System.out.println("First Name not found");
+        else
+        {
+            System.out.println("Enter a first name you want to delete...");
+            String removeName = scanner.next();
+
+            boolean found = false;
+            for (int i = 0; i < detailsAddressBookArrayList.size(); i++) {
+                if (detailsAddressBookArrayList.get(i).getFirstName().equals(removeName)) {
+                    found = true;
+                    detailsAddressBookArrayList.remove(i);
+                }
+            }
+            if (found) {
+                System.out.println("ADDRESS CONTACT BOOK IS DELETED SUCCESSFULLY");
+            } else {
+                System.out.println("First Name not found");
+            }
         }
     }
-
 
 }

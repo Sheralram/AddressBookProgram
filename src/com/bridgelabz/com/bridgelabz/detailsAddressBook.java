@@ -1,19 +1,6 @@
 package com.bridgelabz.com.bridgelabz;
 
 public class detailsAddressBook {
-//    public AddressBookProgram(int contactID, String firstName, String lastName, String address, String city, String state, String zip, String phoneNumber, String emailAddress)
-//    {
-//        this.contactID = contactID;
-//        this.firstName = firstName;
-//        this.lastName = lastName;
-//        this.address = address;
-//        this.city = city;
-//        this.state = state;
-//        this.zip = zip;
-//        this.phoneNumber = phoneNumber;
-//        this.emailAddress = emailAddress;
-//    }
-
     private String firstName;
     private String lastName;
     private String address;

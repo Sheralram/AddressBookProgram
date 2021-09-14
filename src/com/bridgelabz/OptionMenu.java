@@ -1,15 +1,19 @@
 package com.bridgelabz;
 
+import com.bridgelabz.com.bridgelabz.detailsAddressBook;
+
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class OptionMenu {
-    public void operation() {
+    AddOrRemove addOrRemove= new AddOrRemove();
 
+    public void operation(List<detailsAddressBook>a, Map<String, List<detailsAddressBook>>addressBook,String newBook) {
         Scanner scanner = new Scanner(System.in);
         AddOrRemove addOrRemove = new AddOrRemove();
-
-        while (true) {
-
+            boolean run = true;
+        while (run) {
             System.out.println("\nWhat would u like to do with contacts? \n" +
                     "1. ADD     \n" +
                     "2. DISPLAY \n" +
@@ -17,10 +21,10 @@ public class OptionMenu {
                     "4. REMOVE  \n" +
                     "0. EXIT    \n");
             int choice = scanner.nextInt();
-
             switch (choice) {
                 case 1:
-                    addOrRemove.addPerson();
+                    List<detailsAddressBook>multiContactInBook = addOrRemove.addPerson();
+                    addressBook.put(newBook,multiContactInBook);
                     break;
 
                 case 2:
@@ -34,8 +38,9 @@ public class OptionMenu {
                     break;
 
                 default:
-                    System.exit(0);
-                    break;
+                    run = false;
+                    System.out.println("You exit from Address Book Program");
+                     break;
             }
         }
     }
