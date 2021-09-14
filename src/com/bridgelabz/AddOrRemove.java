@@ -1,82 +1,84 @@
 package com.bridgelabz;
 
 import com.bridgelabz.com.bridgelabz.detailsAddressBook;
+
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
-import java.util.logging.StreamHandler;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class AddOrRemove {
     ArrayList<detailsAddressBook> detailsAddressBookArrayList = new ArrayList<>();
     Scanner scanner = new Scanner(System.in);
 
-    public ArrayList addPerson() {
+    public ArrayList<detailsAddressBook> addPerson() {
         System.out.println("Enter following details \n" +
                 "First Name :");
-       String firstName = scanner.next();
-        System.out.println("Last Name :");
-        String lastName = scanner.next();
-        System.out.println("Address :");
-        String address = scanner.next();
-        System.out.println("City :");
-        String city = scanner.next();
-        System.out.println("State :");
-        String state = scanner.next();
-        System.out.println("Zip Code :");
-        int zip = scanner.nextInt();
-        System.out.println("Phone Number :");
-        long phoneNumber = scanner.nextLong();
-        System.out.println("Email :");
-        String emailAddress = scanner.next();
+        String firstName = scanner.next();
+        boolean found = false;
+        for (int i = 0; i < detailsAddressBookArrayList.size(); i++) {
+            if (detailsAddressBookArrayList.get(i).getFirstName().equals(firstName)) {
+                found = true;
+                break;
+            }
+        }
+        if (found) {
+            System.out.println("First Name in the contact is exist.Please give another first name1");
+        } else {
+            System.out.println("Last Name :");
+            String lastName = scanner.next();
+            System.out.println("Address :");
+            String address = scanner.next();
+            System.out.println("City :");
+            String city = scanner.next();
+            System.out.println("State :");
+            String state = scanner.next();
+            System.out.println("Zip Code :");
+            int zip = scanner.nextInt();
+            System.out.println("Phone Number :");
+            long phoneNumber = scanner.nextLong();
+            System.out.println("Email :");
+            String emailAddress = scanner.next();
+            detailsAddressBook details = new detailsAddressBook();
+            details.setFirstName(firstName);
+            details.setLastName(lastName);
+            details.setAddress(address);
+            details.setCity(city);
+            details.setState(state);
+            details.setZip(zip);
+            details.setPhoneNumber(phoneNumber);
+            details.setEmailAddress(emailAddress);
+            detailsAddressBookArrayList.add(details);   //Adding details data
 
-        detailsAddressBook details = new detailsAddressBook();
-        details.setFirstName(firstName);
-        details.setLastName(lastName);
-        details.setAddress(address);
-        details.setCity(city);
-        details.setState(state);
-        details.setZip(zip);
-        details.setPhoneNumber(phoneNumber);
-        details.setEmailAddress(emailAddress);
-        detailsAddressBookArrayList.add(details);   //Adding details data
+        }
         return detailsAddressBookArrayList;
     }
 
     public void displayPerson() {
-        if(detailsAddressBookArrayList.size() ==0){
+        if (detailsAddressBookArrayList.size() == 0) {
             System.out.println("Address book EMPTY: You must add the details in Address Book Contact ");
-        }else {
+        } else {
             System.out.println("All contact =  " + detailsAddressBookArrayList.size());
             System.out.println(detailsAddressBookArrayList);
         }
-
     }
 
     public void editPerson() {
         System.out.println("Enter a first name you want to edit...");
         String editName = scanner.nextLine();
-
         boolean found = false;
         for (detailsAddressBook details : detailsAddressBookArrayList) {
             if (details.getFirstName().equals(editName)) {
                 found = true;
                 System.out.println(details);
-
                 System.out.println("What do you want to edit \n" +
                         "1. First Name / 2. Last Name / 3. Address / 4. City / " +
                         "5. State / 6. Zip code / 7. Phone Number / 8. Email");
-
                 int choice = scanner.nextInt();
                 switch (choice) {
-
                     case 1:
                         System.out.println("Enter a new First Name");
                         String newFirstName = scanner.next();
                         details.setFirstName(newFirstName);
                         break;
-
                     case 2:
                         System.out.println("Enter a new Last Name");
                         String lastName = scanner.next();
@@ -99,12 +101,12 @@ public class AddOrRemove {
                         break;
                     case 6:
                         System.out.println("Enter a new ZipCode");
-                        Long zip = scanner.nextLong();
+                        long zip = scanner.nextLong();
                         details.setZip(zip);
                         break;
                     case 7:
                         System.out.println("Enter a new Phone Number");
-                        Long phoneNumber = scanner.nextLong();
+                        long phoneNumber = scanner.nextLong();
                         details.setPhoneNumber(phoneNumber);
                         break;
                     case 8:
@@ -115,11 +117,8 @@ public class AddOrRemove {
 
                     default:
                         System.out.println("You Press Wrong option ");
-
                 }
-
             }
-
         }
         if (found) {
             System.out.println("Your Edit Choice is Update SUCCESSFULLY");
@@ -128,16 +127,12 @@ public class AddOrRemove {
         }
     }
 
-
     public void removePerson() {
         if (detailsAddressBookArrayList.size() == 0) {
             System.out.println("Address book is Empty . Please add details to remove the expected contacts");
-        }
-        else
-        {
+        } else {
             System.out.println("Enter a first name you want to delete...");
             String removeName = scanner.next();
-
             boolean found = false;
             for (int i = 0; i < detailsAddressBookArrayList.size(); i++) {
                 if (detailsAddressBookArrayList.get(i).getFirstName().equals(removeName)) {
@@ -152,5 +147,4 @@ public class AddOrRemove {
             }
         }
     }
-
 }

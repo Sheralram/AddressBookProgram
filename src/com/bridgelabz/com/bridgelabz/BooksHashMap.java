@@ -1,16 +1,14 @@
 package com.bridgelabz.com.bridgelabz;
 
-import com.bridgelabz.AddOrRemove;
 import com.bridgelabz.OptionMenu;
-
 import java.util.*;
 
 public class BooksHashMap {
     Map<String, List<detailsAddressBook>> addressBooks = new HashMap<>();
-    private Scanner scanner = new Scanner(System.in);
-     OptionMenu optionMenu = new OptionMenu();
+    OptionMenu optionMenu = new OptionMenu();
+    private  Scanner scanner = new Scanner(System.in);
 
-     public void multipleAddressBook() {
+    public void multipleAddressBook() {
         while (true) {
             System.out.println("What would you like to do? \n" +
                     "1. Crate new address book \n" +
@@ -18,24 +16,27 @@ public class BooksHashMap {
                     "3. All books \n" +
                     "0. EXIT");
             int choice = scanner.nextInt();
-
             switch (choice) {
                 case 1:
                     System.out.println("Enter new name Address Book");
                     String newBookName = scanner.next();
                     List<detailsAddressBook> contactList = new ArrayList<>();
-                    optionMenu.operation(contactList,addressBooks,newBookName);
+                    if (addressBooks.containsKey(newBookName)) {
+                        System.out.println("Address book Name is Already Exist");
+                    } else {
+                        optionMenu.operation(contactList, addressBooks, newBookName);
+                    }
                     break;
 
                 case 2:
-                System.out.println(addressBooks.keySet());
-                System.out.println("Which address book do you want to access?");
-                String existingBook = scanner.next();
-                if (addressBooks.containsKey(existingBook)) {
-                    contactList = addressBooks.get(existingBook);
-                    optionMenu.operation(contactList, addressBooks, existingBook);
-                } else
-                    System.out.println("Book not found");
+                    System.out.println(addressBooks.keySet());
+                    System.out.println("Which address book do you want to access?");
+                    String existingBook = scanner.next();
+                    if (addressBooks.containsKey(existingBook)) {
+                        contactList = addressBooks.get(existingBook);
+                        optionMenu.operation(contactList, addressBooks, existingBook);
+                    } else
+                        System.out.println("Book not found");
                     break;
 
                 case 3:
@@ -51,8 +52,6 @@ public class BooksHashMap {
                     System.exit(0);
                     break;
             }
-
         }
-
     }
 }
