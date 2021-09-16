@@ -71,8 +71,6 @@ public class detailsAddressBook {
     }
 
     public void setEmailAddress(String emailAddress) {
-
-
         this.emailAddress = emailAddress;
     }
 
@@ -90,5 +88,7 @@ public class detailsAddressBook {
                 ", emailAddress='" + emailAddress + '\'' +
                 '}' + '\n';
     }
+
+
 
 }

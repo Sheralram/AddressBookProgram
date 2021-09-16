@@ -3,7 +3,10 @@ package com.bridgelabz;
 import com.bridgelabz.com.bridgelabz.detailsAddressBook;
 
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class AddOrRemove {
     ArrayList<detailsAddressBook> detailsAddressBookArrayList = new ArrayList<>();
@@ -14,6 +17,7 @@ public class AddOrRemove {
                 "First Name :");
         String firstName = scanner.next();
         boolean found = false;
+
         for (int i = 0; i < detailsAddressBookArrayList.size(); i++) {
             if (detailsAddressBookArrayList.get(i).getFirstName().equals(firstName)) {
                 found = true;
@@ -37,6 +41,7 @@ public class AddOrRemove {
             long phoneNumber = scanner.nextLong();
             System.out.println("Email :");
             String emailAddress = scanner.next();
+
             detailsAddressBook details = new detailsAddressBook();
             details.setFirstName(firstName);
             details.setLastName(lastName);
@@ -48,6 +53,10 @@ public class AddOrRemove {
             details.setEmailAddress(emailAddress);
             detailsAddressBookArrayList.add(details);   //Adding details data
 
+            detailsAddressBookArrayList  =(ArrayList<detailsAddressBook>) detailsAddressBookArrayList
+                    .stream()
+                    .sorted(Comparator.comparing(detailsAddressBook::getFirstName))
+                    .collect(Collectors.toList());
         }
         return detailsAddressBookArrayList;
     }
